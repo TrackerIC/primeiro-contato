@@ -27,14 +27,14 @@ listaHoras_dia = hours_of_day.tolist()
 arquivo_selec = pd.read_csv('seuarquivo_convertido.csv', nrows=len(listaHoras_dia))
 
 # Criando um JSON a partir da lista, apenas por estética do print
-print(json.dumps(listaHoras_dia, indent=4))
+# print(json.dumps(listaHoras_dia, indent=4))
 
 
 padrao = 'ncu.tcus\[(\d+)\]\.data.Position_a1_rad_s1'
 colunas_com_padrao = [coluna for coluna in planilha.columns if pd.Series(coluna).str.match(padrao).any()]
 # Calculando o número de colunas com o padrão
 numero_de_colunas_com_padrao = len(colunas_com_padrao)
-print(f"Número de colunas com o padrão '{padrao}': {numero_de_colunas_com_padrao}")
+# print(f"Número de colunas com o padrão '{padrao}': {numero_de_colunas_com_padrao}")
 
 diaMin = min(planilha['ncu.datetime'].dt.day)
 diaMax = max(planilha['ncu.datetime'].dt.day)
@@ -77,6 +77,4 @@ elif(entrada_Dia < diaMin or entrada_Dia > diaMax):
     messagebox.showinfo("Alerta", f"O número do dia é menor que {diaMin} ou maior que {diaMax}")
 elif(entrada_TCU < 0 or entrada_TCU > numero_de_colunas_com_padrao):
     messagebox.showinfo("Alerta", f"O número do TCU não está presente na planilha")
-
-print('Camille')
 
