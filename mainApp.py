@@ -3,9 +3,17 @@ import pandas as pd
 import json
 import matplotlib.pyplot as plt
 from tkinter import simpledialog, messagebox, filedialog
+import convertendo as cnv
 # Leitura do Arquivo
-arquivo = filedialog.askopenfilename()
-planilha = pd.read_csv(arquivo)
+arquivo = filedialog.askopenfilename(initialdir="/", title="Selecione a Planilha",
+                                    filetypes=[("Arquivos de Texto", "*.txt"),
+                                    ("Todos os Arquivos", "*.*")], 
+                                    defaultextension=".txt")
+
+arquivo_tratado = cnv.convert(arquivo)
+
+
+planilha = pd.read_csv(arquivo_tratado)
 
 # Seleção do dia e TCU com o simpledialog do tkinter, (Título, Mensagem):
 entrada_Dia = simpledialog.askinteger("Dia", "Digite o dia desejado:")
