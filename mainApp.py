@@ -2,9 +2,9 @@ from pandas._libs.tslibs.timestamps import Timestamp
 import pandas as pd
 import json
 import matplotlib.pyplot as plt
-from tkinter import simpledialog, messagebox
+from tkinter import simpledialog, messagebox, filedialog
 # Leitura do Arquivo
-arquivo = 'seuarquivo_convertido.csv'
+arquivo = filedialog.askopenfilename()
 planilha = pd.read_csv(arquivo)
 
 # Seleção do dia e TCU com o simpledialog do tkinter, (Título, Mensagem):
