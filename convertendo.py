@@ -1,9 +1,9 @@
 import pandas as pd
-import math
+# import math
 import matplotlib.pyplot as plt
-import json
+# import json
 import numpy as np
-import pytz
+# import pytz
 
 
 arquivo = 'Ribeirao_Bonito-SP.TCU_NCU1.csv'
