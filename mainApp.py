@@ -8,8 +8,10 @@ arquivo = 'seuarquivo_convertido.csv'
 planilha = pd.read_csv(arquivo)
 
 # Seleção do dia e TCU com o simpledialog do tkinter, (Título, Mensagem):
+
 entrada_Dia = simpledialog.askinteger("Dia", "Digite o dia desejado:")
 entrada_TCU = simpledialog.askinteger("TCU", "Digite o TCU desejado:")
+
 
 
 
@@ -43,38 +45,39 @@ diaMax = max(planilha['ncu.datetime'].dt.day)
 
 
 
-
+try:
 # GRAFICO
-if (entrada_Dia >= diaMin and entrada_Dia <= diaMax) and (entrada_TCU>0 and entrada_TCU<=numero_de_colunas_com_padrao):
+    if (entrada_Dia >= diaMin and entrada_Dia <= diaMax) and (entrada_TCU>0 and entrada_TCU<=numero_de_colunas_com_padrao):
 
-    # Pega o valor do TCU
-    listaPosTCU = arquivo_selec[f'ncu.tcus[{entrada_TCU}].data.Position_a1_rad_s1'].tolist()
-    # Suas duas listas de valores
-    lista_x = listaHoras_dia
-    lista_y = listaPosTCU
+        # Pega o valor do TCU
+        listaPosTCU = arquivo_selec[f'ncu.tcus[{entrada_TCU}].data.Position_a1_rad_s1'].tolist()
+        # Suas duas listas de valores
+        lista_x = listaHoras_dia
+        lista_y = listaPosTCU
 
-    # Configura os eixos e formata o estilo do gráfico
-    plt.plot(lista_x, lista_y, 'r-')
+        # Configura os eixos e formata o estilo do gráfico
+        plt.plot(lista_x, lista_y, 'r-')
 
-    # Rotacionar rótulos do eixo X para melhor legibilidade (opcional)
-    intervalo_legendas = 10 # Configura o intervalo dos termos do eixo
-    plt.xticks(range(0, len(lista_x), intervalo_legendas), rotation=90)
+        # Rotacionar rótulos do eixo X para melhor legibilidade (opcional)
+        intervalo_legendas = 10 # Configura o intervalo dos termos do eixo
+        plt.xticks(range(0, len(lista_x), intervalo_legendas), rotation=90)
 
 
-    # Adicionar rótulos aos eixos
-    plt.xlabel('Data/Hora')
-    plt.ylabel(f'Posição TCU{entrada_TCU}')
+        # Adicionar rótulos aos eixos
+        plt.xlabel('Data/Hora')
+        plt.ylabel(f'Posição TCU{entrada_TCU}')
 
-    # Adicionar título ao gráfico
-    plt.title(f'Gráfico de Posição do TCU{entrada_TCU} Dia {entrada_Dia}')
+        # Adicionar título ao gráfico
+        plt.title(f'Gráfico de Posição do TCU{entrada_TCU} Dia {entrada_Dia}')
 
-    # Ajustar layout para evitar cortes nos rótulos
-    plt.tight_layout()
+        # Ajustar layout para evitar cortes nos rótulos
+        plt.tight_layout()
 
-    # Mostrar o gráfico
-    plt.show()
-elif(entrada_Dia < diaMin or entrada_Dia > diaMax):
-    messagebox.showinfo("Alerta", f"O número do dia é menor que {diaMin} ou maior que {diaMax}")
-elif(entrada_TCU < 0 or entrada_TCU > numero_de_colunas_com_padrao):
-    messagebox.showinfo("Alerta", f"O número do TCU não está presente na planilha")
-print("Testando o camanda")
+        # Mostrar o gráfico
+        plt.show()
+    elif(entrada_Dia < diaMin or entrada_Dia > diaMax):
+        messagebox.showinfo("Alerta", f"O número do dia é menor que {diaMin} ou maior que {diaMax}")
+    elif(entrada_TCU < 0 or entrada_TCU > numero_de_colunas_com_padrao):
+        messagebox.showinfo("Alerta", f"O número do TCU não está presente na planilha")
+except TypeError:
+    messagebox.showinfo("Alerta", f"Não foram digitados números suficientes")
