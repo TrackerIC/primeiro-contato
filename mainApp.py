@@ -77,4 +77,4 @@ elif(entrada_Dia < diaMin or entrada_Dia > diaMax):
     messagebox.showinfo("Alerta", f"O número do dia é menor que {diaMin} ou maior que {diaMax}")
 elif(entrada_TCU < 0 or entrada_TCU > numero_de_colunas_com_padrao):
     messagebox.showinfo("Alerta", f"O número do TCU não está presente na planilha")
-
+print("Testando o camanda")
