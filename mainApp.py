@@ -12,9 +12,6 @@ planilha = pd.read_csv(arquivo)
 entrada_Dia = simpledialog.askinteger("Dia", "Digite o dia desejado:")
 entrada_TCU = simpledialog.askinteger("TCU", "Digite o TCU desejado:")
 
-
-
-
 # Convertendo a coluna 'ncu.datetime' para o formato de datetime
 planilha['ncu.datetime'] = pd.to_datetime(planilha['ncu.datetime'])
 
@@ -31,7 +28,6 @@ arquivo_selec = pd.read_csv('seuarquivo_convertido.csv', nrows=len(listaHoras_di
 # Criando um JSON a partir da lista, apenas por estética do print
 # print(json.dumps(listaHoras_dia, indent=4))
 
-
 padrao = 'ncu.tcus\[(\d+)\]\.data.Position_a1_rad_s1'
 colunas_com_padrao = [coluna for coluna in planilha.columns if pd.Series(coluna).str.match(padrao).any()]
 # Calculando o número de colunas com o padrão
@@ -40,10 +36,6 @@ numero_de_colunas_com_padrao = len(colunas_com_padrao)
 
 diaMin = min(planilha['ncu.datetime'].dt.day)
 diaMax = max(planilha['ncu.datetime'].dt.day)
-
-
-
-
 
 try:
 # GRAFICO
